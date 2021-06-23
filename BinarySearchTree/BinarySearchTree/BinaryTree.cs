@@ -8,6 +8,7 @@ namespace BinarySearchTree
     {                                         // implements to order or sort its instances.
         Node<T> Root;
         Node<T> Current;
+        int count; 
         /// <summary>
         /// Inserts the data in Binary search tree.
         /// </summary>
@@ -19,6 +20,7 @@ namespace BinarySearchTree
             {
                 this.Root = new Node<T>(data);
                 this.Current = Root;
+                count++;
                 return;
             }
             ///If data is less than data in root then current position node will point to left.
@@ -29,6 +31,7 @@ namespace BinarySearchTree
                 {
                     this.Current.leftNode = new Node<T>(data);
                     this.Current = Root;
+                    count++;
 
                 }
                 else
@@ -36,7 +39,6 @@ namespace BinarySearchTree
                     this.Current = this.Current.leftNode;
                     InsertData(data);
                 }
-                Console.WriteLine("{0} Inserted in Left Node ",data);
             }
             else
             {
@@ -45,13 +47,13 @@ namespace BinarySearchTree
                 {
                     this.Current.rightNode = new Node<T>(data);
                     this.Current = Root;
+                    count++;
                 }
                 else
                 {
                     this.Current = this.Current.rightNode;
                     InsertData(data);
                 }
-                Console.WriteLine("{0} Inserted in Right Node ", data);
             }
 
         }
@@ -76,6 +78,13 @@ namespace BinarySearchTree
                 Display(node.rightNode);
             }
 
+        }
+        /// <summary>
+        /// Gets the size of binary search tree..
+        /// </summary>
+        public int GetSize()
+        {
+            return count;
         }
     }
 }
