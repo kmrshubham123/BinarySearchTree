@@ -8,7 +8,8 @@ namespace BinarySearchTree
     {                                         // implements to order or sort its instances.
         Node<T> Root;
         Node<T> Current;
-        int count; 
+        int count;
+        bool result = false;
         /// <summary>
         /// Inserts the data in Binary search tree.
         /// </summary>
@@ -85,6 +86,41 @@ namespace BinarySearchTree
         public int GetSize()
         {
             return count;
+        }
+        /// <summary>
+        /// Search for the node in the binary search tree.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="node">The node.</param>
+        /// <returns></returns>
+        public bool SearchTree(int data, Node<T> node)
+        {
+            ///Checks for node is null.
+            if (node == null)
+            {
+                return false;
+            }
+            else
+            {
+                ///Checks if current data is equal to data.
+                if (this.Current.data.Equals(data))
+                {
+                    result = true;
+                }
+                ///If current data is less than data in root then current position node
+                ///will point to left else to right.
+                else if (this.Current.data.CompareTo(data) > 0)
+                {
+                    this.Current = this.Current.leftNode;
+                    SearchTree(data, Current);
+                }
+                else
+                {
+                    this.Current = this.Current.rightNode;
+                    SearchTree(data, Current);
+                }
+                return result;
+            }
         }
     }
 }
